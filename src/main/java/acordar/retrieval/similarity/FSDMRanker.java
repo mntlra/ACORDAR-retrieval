@@ -31,11 +31,6 @@ import java.util.*;
 
 import acordar.retrieval.parse.DatasetFields;
 
-/**
- * This class will implement the FSDM scoring function
- *
- * @author Manuel Barusco
- */
 public class FSDMRanker {
     private static Directory directory = null;
     private static IndexReader indexReader = null;
