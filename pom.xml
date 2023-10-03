@@ -12,30 +12,9 @@
     <!-- Project Description -->
 
     <name>ACORDAR Retrieval</name>
-    <description>ACORDAR - A Test Collection for Ad Hoc Content-Based Dataset Retrieval.</description>
-    <url>https://github.com/mntlra/ACORDAR-retrieval</url>
+    <description>An Analysis of the ACORDAR Test Collection: Retrieval Models</description>
+    <url>https://anonymous.4open.science/r/ACORDAR-retrieval</url>
     <inceptionYear>2023</inceptionYear>
-
-    <developers>
-        <developer>
-            <id>2053083</id>
-            <name>Manuel Barusco</name>
-        </developer>
-        <developer>
-            <id>2057453</id>
-            <name>Riccardo Forzan</name>
-        </developer>
-        <developer>
-            <id>2019172</id>
-            <name>Laura Menotti</name>
-            <email>laura.menotti@unipd.it</email>
-        </developer>
-        <developer>
-            <id>2019173</id>
-            <name>Gianmaria Silvello</name>
-            <email>gianmaria.silvello@unipd.it</email>
-        </developer>
-    </developers>
 
     <organization>
         <name>Department of Information Engineering (DEI), University of Padua, Italy</name>
