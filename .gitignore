@@ -6,7 +6,7 @@
 # results
 experiments/
 resources/
-#target/
+target/
 
 # Log file
 *.log
@@ -18,7 +18,7 @@ resources/
 .mtj.tmp/
 
 # Package Files #
-# *.jar
+*.jar
 *.war
 *.nar
 *.ear
