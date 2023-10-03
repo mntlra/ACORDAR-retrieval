@@ -5,7 +5,7 @@
 
 # results
 experiments/
-resources/
+#resources/
 target/
 
 # intellij
