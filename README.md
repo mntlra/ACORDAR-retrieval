@@ -27,6 +27,8 @@ $  git clone https://github.com/nju-websoft/ACORDAR/
 
 #### Acquire datasets' content
 
+To run the Content and Full configuration you need to have access to the datasets' content. **Note**: you can run the Metadata configuration without acquiring the datasets' content just set the `contentPath` argument to any valid directory.
+
 You can clone the [ACORDAR Retrieve Datasets Content GitHub repository](https://github.com/mntlra/ACORDAR-Repro-py) and follow the instruction to run the code. 
 
 Clone the ACORDAR Retrieve Datasets Content GitHub repository
@@ -42,7 +44,7 @@ We provide a `pom.xml` file with all the required dependecies and an executable 
 
 ## Usage
 
-Users can deploy the code using the `AcordarRetrieval.java` file and setting the following arguments (remember to set the parameters in the correct order):
+Users can run the executable jar file `target/acordar-retrieval-1.0-jar-with-dependencies.jar `. Users can also deploy the code using the `AcordarRetrieval.java` file and setting the following arguments (remember to set the parameters in the correct order):
 
 0.  `corpusPath`: specifies the path to the corpus file to index.
 
@@ -50,7 +52,7 @@ Users can deploy the code using the `AcordarRetrieval.java` file and setting the
 
 2. `mode`: specifies the run configuration. Accepted values are: `Metadata` for indexing only metadata, `Content`for indexing only the data fields, and `Full` for indexing metadata and content.
 
-3. `contentPath`: specifies the path to the indexable content. If content has been downloaded to zenodo in the correct repository, set it to `resources/indexable_content`. If content has been acquired with the [ACORDAR Content Retrieve GitHub Repository](https://github.com/mntlra/ACORDAR-Repro-py), set it to the path to the `output/indexbale_content` directory.
+3. `contentPath`: specifies the path to the indexable content. If content has been downloaded to zenodo in the correct repository, set it to `resources/indexable_content`. If content has been acquired with the [ACORDAR Content Retrieve GitHub Repository](https://github.com/mntlra/ACORDAR-Repro-py), set it to the path to the `output/indexbale_content` directory. If you run the `Metadata` configuration this argument is not used within the code so you can set it to any valid directory.
 
 4.  `topicsPath`: specifies the path to the queries.
 
@@ -64,10 +66,6 @@ To run the Metadata configuration using BM25F and boost weights over the complet
 
 ```bash
 $ java -jar target/acordar-retrieval-1.0-jar-with-dependencies.jar 
-resources/ACORDAR/Data/datasets.json BM25F Metadata resources/indexable_content/ resources/ACORDAR/Data/all_queries.txt 
+resources/ACORDAR/Data/datasets.json BM25 Metadata resources/indexable_content/ resources/ACORDAR/Data/all_queries.txt 
 experiments/runs/ boost
 ```
-
-### Example: Run the main class
-
-
