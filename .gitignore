@@ -4,6 +4,10 @@ __pycache__/
 *$py.class
 *.DS_Store
 
+# results
+experiments/
+resources/
+
 # C extensions
 *.so
 
