@@ -8,6 +8,9 @@ experiments/
 resources/
 target/
 
+# intellij
+.idea/*
+
 # Log file
 *.log
 
