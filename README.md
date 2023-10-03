@@ -1,4 +1,4 @@
-# An Analysis of the ACORDAR Test Collection: Retrieval Results
+# An Analysis of the ACORDAR Test Collection: Retrieval Models
 
 This repository contains the code we used to reproduce the retrieval results present in the [ACORDAR Test Collection's reference paper](https://doi.org/10.1145/3477495.3531729). The program indexes the given corpus and retrieve the 10 most relevant datasets for the given queries. 
 
