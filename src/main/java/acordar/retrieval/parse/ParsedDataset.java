@@ -47,6 +47,24 @@ public class ParsedDataset {
         this.literals = literals;
     }
 
+    public ParsedDataset(String id, String title, String description, String size, String license, String created, String updated, String tags, String version, String author) {
+        if (id == null) throw new IllegalArgumentException("Document id cannot be null.");
+        if (title == null) throw new IllegalArgumentException("Document title cannot be null.");
+        if (id.isEmpty()) throw new IllegalArgumentException("Document id cannot be empty.");
+        if (title.isEmpty()) throw new IllegalArgumentException("Document title cannot be empty.");
+
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.size = size;
+        this.license = license;
+        this.created = created;
+        this.updated = updated;
+        this.tags = tags;
+        this.version = version;
+        this.author = author;
+    }
+
     public String getId() {
         return id;
     }

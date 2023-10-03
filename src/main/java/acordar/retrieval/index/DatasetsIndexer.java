@@ -35,28 +35,37 @@ public class DatasetsIndexer {
     private final Path corpusFile;
     private final String corpusPath;
     private final String indexPath;
+    private final String mode;
+    private final String contentPath;
     private int indexedDatasetsCount;
 
     /**
+     * Indexes the datasets.
      *
      * @param analyzer: analyzer used to build the index.
      * @param similarity: similarity function.
      * @param indexPath: saving path for the index.
      * @param corpusPath: path to the ACORDAR Test Collection.
+     * @param mode: considered configuration. (Metadata, Content, or Full)
+     * @param contentPath: path to the datasets' content.
      * @param dpCls: class used to parse the corpus.
      */
-    public DatasetsIndexer(Analyzer analyzer, Similarity similarity, String indexPath, String corpusPath, Class<? extends DocumentParser> dpCls) {
+    public DatasetsIndexer(Analyzer analyzer, Similarity similarity, String indexPath, String corpusPath, String mode, String contentPath, Class<? extends DocumentParser> dpCls) {
         if (dpCls == null) throw new IllegalArgumentException("Document parser class cannot be null.");
         if (analyzer == null) throw new IllegalArgumentException("Analyzer cannot be null.");
         if (similarity == null) throw new IllegalArgumentException("Similarity cannot be null.");
         if (indexPath == null) throw new IllegalArgumentException("Index path cannot be null.");
         if (corpusPath == null) throw new IllegalArgumentException("Corpus path cannot be null.");
+        if (mode == null) throw new IllegalArgumentException("Mode configuration cannot be null.");
+        if (contentPath == null) throw new IllegalArgumentException("Content directory cannot be null.");
         if (indexPath.isEmpty()) throw new IllegalArgumentException("Index path cannot be empty.");
         if (corpusPath.isEmpty()) throw new IllegalArgumentException("Corpus path cannot be empty.");
 
         this.indexPath = indexPath;
+        this.mode = mode;
         Path indexDir = Paths.get(indexPath);
         Path corpusFile = Paths.get(corpusPath);
+        Path contentDir = Paths.get(contentPath);
 
         if (Files.notExists(indexDir)) {
             try {
@@ -75,6 +84,9 @@ public class DatasetsIndexer {
         if (!Files.isReadable(corpusFile))
             throw new IllegalArgumentException("Documents path \"" + corpusFile.toAbsolutePath() + "\" cannot be read.");
 
+        if (!Files.isDirectory(contentDir))
+            throw new IllegalArgumentException("\"" + contentDir.toAbsolutePath() + "\" expected to be a directory where to write the index.");
+
         // Set the index writer configuration
         IndexWriterConfig iwc = new IndexWriterConfig(analyzer);
         iwc.setSimilarity(similarity);
@@ -91,22 +103,22 @@ public class DatasetsIndexer {
         this.dpCls = dpCls;
         this.corpusFile = corpusFile;
         this.corpusPath = corpusPath;
+        this.contentPath = contentPath;
     }
 
     /**
      * Indexes the parsed corpus.
      *
-     * @param mode: considered configuration. (Metadata, Content, or Full)
      * @param verbose: if set to True, print diagnostics.
      * @throws IOException
      */
-    public void index(String mode, boolean verbose) throws IOException {
+    public void index(boolean verbose) throws IOException {
 
         long startTime = System.currentTimeMillis();
 
         if (corpusFile.getFileName().toString().endsWith(DATASETS_FILES_EXTENSION)) {
             if (verbose) System.out.println("Indexing file: " + corpusFile.getFileName());
-            DocumentParser dp = DocumentParser.create(dpCls, new BufferedInputStream(new FileInputStream(corpusPath)));
+            DocumentParser dp = DocumentParser.create(dpCls, new BufferedInputStream(new FileInputStream(corpusPath)), mode, contentPath);
 
             Document doc;
             Set<String> ids = new HashSet<>();

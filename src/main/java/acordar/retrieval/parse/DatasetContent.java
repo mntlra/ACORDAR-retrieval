@@ -25,22 +25,25 @@ public class DatasetContent {
     private static final JsonFactory jsonFactory = new JsonFactory().enable(JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS.mappedFeature());
     private final JsonParser jsonParser;
 
-
-    public DatasetContent(String id) throws IOException {
+    /**
+     * Store the data fields for each dataset.
+     *
+     * @param id: the id of the considered dataset.
+     * @param contentPath: the directory where the indexable content is stored.
+     *
+     * @throws IOException
+     */
+    public DatasetContent(String id, String contentPath) throws IOException {
 
         if (id == null) throw new IllegalArgumentException("Document id cannot be null.");
 
         this.id = id;
-        String filepath = "../output/indexable_content/dataset_"+id+".json";
+        String filepath = contentPath+"dataset_"+id+".json";
         this.jsonParser = jsonFactory.createParser(new BufferedInputStream(new FileInputStream(filepath)));
         // Check the first token
         if (jsonParser.nextToken() != JsonToken.START_OBJECT) {
             throw new IllegalStateException("Expected content to be a JSON-like file");
         }
-        // else{
-            // skip to start of the first object (i.e. START_OBJECT)
-            // jsonParser.nextToken();
-        // }
         while(jsonParser.nextToken() != JsonToken.END_OBJECT){
 
             String property = jsonParser.getCurrentName();

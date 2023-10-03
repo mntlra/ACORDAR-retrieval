@@ -12,18 +12,23 @@ public abstract class DocumentParser implements Iterator<ParsedDataset>, Iterabl
 
 
     protected final BufferedInputStream in;
+    protected final String mode;
+    protected final String contentDir;
 
-    protected DocumentParser(BufferedInputStream in) {
+    protected DocumentParser(BufferedInputStream in, String mode, String contentDir) {
         if (in == null) throw new IllegalArgumentException("Reader cannot be null.");
         this.in = in;
+        this.mode = mode;
+        this.contentDir = contentDir;
+
     }
 
-    public static DocumentParser create(Class<? extends DocumentParser> cls, BufferedInputStream in) {
+    public static DocumentParser create(Class<? extends DocumentParser> cls, BufferedInputStream in, String mode, String contentPath) {
         if (cls == null) throw new IllegalArgumentException("Document parser class cannot be null.");
         if (in == null) throw new IllegalArgumentException("BufferedInputStream cannot be null.");
 
         try {
-            return cls.getConstructor(BufferedInputStream.class).newInstance(in);
+            return cls.getConstructor(BufferedInputStream.class, String.class, String.class).newInstance(in, mode, contentPath);
         } catch (Exception e) {
             throw new IllegalStateException("Unable to instantiate document parser \"" + cls.getName() + "\".", e);
         }

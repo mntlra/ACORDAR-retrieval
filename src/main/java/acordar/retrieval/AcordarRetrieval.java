@@ -24,7 +24,7 @@ public class AcordarRetrieval {
     public static void main(String[] args) throws Exception {
 
         if(args.length != 7)
-            throw new IllegalArgumentException("USAGE: inputDataset, similarity, mode, topicsPath, outputDir, boostWeights");
+            throw new IllegalArgumentException("USAGE: inputDataset, similarity, mode, contentPath, topicsPath, outputDir, boostWeights");
 
         if (!Arrays.asList("TFIDF", "BM25", "FSDM", "LMD").contains(args[1]))
             throw new IllegalArgumentException("Accepted similarity functions: \"TFIDF\", \"BM25\", \"FSDM\", \"LMD\"");
@@ -35,14 +35,15 @@ public class AcordarRetrieval {
         String corpusPath = args[0];
         String sim = args[1];
         String mode = args[2];
-        String topicsPath = args[3];
+        String contentPath = args[3];
+        String topicsPath = args[4];
 
-        String runPath = args[4] + "/" + mode;
-        boolean boost = args[5].equals("boost");
+        String runPath = args[5] + "/" + mode;
+        boolean boost = args[6].equals("boost");
 
         final String RUN_DESCRIPTOR = mode + "-" + INDEX_DESCRIPTOR;
         final String INDEX_PATH = "experiment/indexes/"+sim+mode+"-index-" + RUN_DESCRIPTOR;
-        final String RUN_ID = sim + "_" + mode + "_all_queries";
+        final String RUN_ID = sim + "_" + mode;
 
         // Create the analyzer
         Analyzer analyzer = new StandardAnalyzer(StopListCreation.getStopListFromFile("resources/nltk_en_stopwords.txt"));
@@ -52,8 +53,8 @@ public class AcordarRetrieval {
         System.out.println("--- ACORDAR RETRIEVAL, mode: " + mode + ", similarity function: "+ sim +" ---");
 
         System.out.println("\n--------------- INDEXING ---------------\n");
-        DatasetsIndexer indexer = new DatasetsIndexer(analyzer, similarity, INDEX_PATH, corpusPath, DatasetsParser.class);
-        indexer.index(mode, true);
+        DatasetsIndexer indexer = new DatasetsIndexer(analyzer, similarity, INDEX_PATH, corpusPath, mode, contentPath, DatasetsParser.class);
+        indexer.index(true);
         System.out.println("---------------- INDEXING SUCCESSFULLY COMPLETED -----------\n");
         System.out.println(("Indexed " + indexer.getIndexedDatasetsCount() + " Documents"));
 

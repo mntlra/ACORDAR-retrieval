@@ -18,8 +18,8 @@ public class DatasetsParser extends DocumentParser {
     private ParsedDataset parsedDataset;
     private boolean documentPending;
 
-    public DatasetsParser(BufferedInputStream in) throws IOException {
-        super(in);
+    public DatasetsParser(BufferedInputStream in, String mode, String contentPath) throws IOException {
+        super(in, mode, contentPath);
         this.jsonParser = jsonFactory.createParser(in);
         // Check the first token
         if (jsonParser.nextToken() != JsonToken.START_ARRAY) {
@@ -105,13 +105,18 @@ public class DatasetsParser extends DocumentParser {
                         break;
                 }
             }
+            if(mode.equals("Metadata")){
+                // Return the parsed dataset with only metadata fields
+                parsedDataset =  new ParsedDataset(id, title, description, size, license, created, updated, tags, version, author);
+            }
+            else{
+                // Extract the data fields
+                DatasetContent datasetContent = new DatasetContent(id, contentDir);
+                // Return the parsed dataset
+                parsedDataset =  new ParsedDataset(id, title, description, size, license, created, updated, tags, version, author, datasetContent.getClasses(), datasetContent.getProperties(), datasetContent.getEntities(),
+                        datasetContent.getLiterals());
+            }
 
-            // Extract the data fields
-            DatasetContent datasetContent = new DatasetContent(id);
-
-            // Return the parsed dataset
-            parsedDataset =  new ParsedDataset(id, title, description, size, license, created, updated, tags, version, author, datasetContent.getClasses(), datasetContent.getProperties(), datasetContent.getEntities(),
-                    datasetContent.getLiterals());
             return parsedDataset;
 
         } catch (IOException e) {
