@@ -42,7 +42,7 @@ public class AcordarRetrieval {
         boolean boost = args[6].equals("boost");
 
         final String RUN_DESCRIPTOR = mode + "-" + INDEX_DESCRIPTOR;
-        final String INDEX_PATH = "experiment/indexes/"+sim+mode+"-index-" + RUN_DESCRIPTOR;
+        final String INDEX_PATH = "experiments/indexes/"+sim+mode+"-index-" + RUN_DESCRIPTOR;
         final String RUN_ID = sim + "_" + mode;
 
         // Create the analyzer

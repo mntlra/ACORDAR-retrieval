@@ -38,7 +38,7 @@ public class SimilarityFunction {
                 return new PerFieldSimilarityWrapper() {
                     @Override
                     public Similarity get(String field) {
-                        return getBM25FSimilarity("both", field);
+                        return getBM25FSimilarity("Full", field);
                     }
                 };
             }
@@ -62,7 +62,7 @@ public class SimilarityFunction {
      * @return BM25Similarity with the correct boost weight.
      */
     private static Similarity getBM25FSimilarity(String mode, String field){
-        HashMap<String, Float> boostWeights = Weights.getBoostWeights(mode, "BM25");
+        HashMap<String, Float> boostWeights = Weights.getBoostWeights("BM25", mode);
         return new BM25Similarity(K1, boostWeights.get(field));
     }
 

@@ -22,12 +22,15 @@ public class DatasetsParser extends DocumentParser {
         super(in, mode, contentPath);
         this.jsonParser = jsonFactory.createParser(in);
         // Check the first token
-        if (jsonParser.nextToken() != JsonToken.START_ARRAY) {
-            throw new IllegalStateException("Expected content to be an array");
+        if (jsonParser.nextToken() != JsonToken.START_OBJECT) {
+            throw new IllegalStateException("Expected content to be a JSON object.");
         }
         else{
-            // skip to start of the first object (i.e. START_OBJECT)
-            jsonParser.nextToken();
+            // skip to start of the first object (i.e. Field_NAME + START_ARRAY)
+            jsonParser.nextToken(); // move to "datasets"
+            jsonParser.nextToken(); // move to "["
+            jsonParser.nextToken(); //move to "{"
+
         }
     }
 

@@ -62,7 +62,7 @@ public class Weights {
 
         HashMap<String, Float> boostWeights = new HashMap<>();
         String keyword = similarity;
-        if(!mode.equals("both")){
+        if(!mode.equals("Full")){
             keyword = similarity+mode;
         }
         float[] weights = model2weights.get(keyword);
