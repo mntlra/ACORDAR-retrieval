@@ -6,7 +6,7 @@
 # results
 experiments/
 resources/
-target/
+#target/
 
 # intellij
 .idea/*
