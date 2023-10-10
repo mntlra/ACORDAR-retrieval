@@ -29,11 +29,11 @@ $  git clone https://github.com/nju-websoft/ACORDAR/
 
 To run the Content and Full configuration you need to have access to the datasets' content. **Note**: you can run the Metadata configuration without acquiring the datasets' content just set the `contentPath` argument to any valid directory.
 
-You can clone the [ACORDAR Retrieve Datasets Content GitHub repository](https://github.com/mntlra/ACORDAR-Repro-py) and follow the instruction to run the code. 
+You can clone the [ACORDAR Retrieve Datasets Content GitHub repository](https://anonymous.4open.science/r/ACORDAR-Repro-py) and follow the instruction to run the code. 
 
 Clone the ACORDAR Retrieve Datasets Content GitHub repository
 ```bash
-$  git clone https://github.com/mntlra/ACORDAR-Repro-py
+$  git clone [https://github.com/mntlra/ACORDAR-Repro-py](https://anonymous.4open.science/r/ACORDAR-Repro-py)
 ```
 and follow the instructions to download and parse the datasets.
 
@@ -52,7 +52,7 @@ Users can run the executable jar file `target/acordar-retrieval-1.0-jar-with-dep
 
 2. `mode`: specifies the run configuration. Accepted values are: `Metadata` for indexing only metadata, `Content`for indexing only the data fields, and `Full` for indexing metadata and content.
 
-3. `contentPath`: specifies the path to the indexable content. If content has been downloaded to zenodo in the correct repository, set it to `resources/indexable_content`. If content has been acquired with the [ACORDAR Content Retrieve GitHub Repository](https://github.com/mntlra/ACORDAR-Repro-py), set it to the path to the `output/indexbale_content` directory. If you run the `Metadata` configuration this argument is not used within the code so you can set it to any valid directory.
+3. `contentPath`: specifies the path to the indexable content. If content has been downloaded to zenodo in the correct repository, set it to `resources/indexable_content`. If content has been acquired with the [ACORDAR Content Retrieve GitHub Repository](https://anonymous.4open.science/r/ACORDAR-Repro-py), set it to the path to the `output/indexbale_content` directory. If you run the `Metadata` configuration this argument is not used within the code so you can set it to any valid directory.
 
 4.  `topicsPath`: specifies the path to the queries.
 
