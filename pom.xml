@@ -16,11 +16,6 @@
     <url>https://anonymous.4open.science/r/ACORDAR-retrieval</url>
     <inceptionYear>2023</inceptionYear>
 
-    <organization>
-        <name>Department of Information Engineering (DEI), University of Padua, Italy</name>
-        <url>https://www.dei.unipd.it/en/</url>
-    </organization>
-
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
