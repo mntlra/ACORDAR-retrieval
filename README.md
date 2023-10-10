@@ -1,6 +1,6 @@
 # An Analysis of the ACORDAR Test Collection: Retrieval Models
 
-This repository contains the code we used to reproduce the retrieval results present in the [ACORDAR Test Collection's reference paper](https://doi.org/10.1145/3477495.3531729). The program indexes the given corpus and retrieve the 10 most relevant datasets for the given queries. 
+This repository contains the code we used to reproduce the retrieval results presented in the [ACORDAR Test Collection's reference paper](https://doi.org/10.1145/3477495.3531729). The program indexes the given corpus and retrieve the 10 most relevant datasets for the given queries. 
 
 ## Repository Structure
 - `experiments/` contains all the results produced by the code: the indexes and propduced runs.
@@ -29,11 +29,11 @@ $  git clone https://github.com/nju-websoft/ACORDAR/
 
 To run the Content and Full configuration you need to have access to the datasets' content. **Note**: you can run the Metadata configuration without acquiring the datasets' content just set the `contentPath` argument to any valid directory.
 
-You can clone the [ACORDAR Retrieve Datasets Content GitHub repository](https://anonymous.4open.science/r/ACORDAR-Repro-py) and follow the instruction to run the code. 
+You can clone the [ACORDAR Retrieve Datasets Content GitHub repository](https://anonymous.4open.science/r/ACORDAR-Repro-py) and follow the instructions to run the code. 
 
 Clone the ACORDAR Retrieve Datasets Content GitHub repository
 ```bash
-$  git clone [https://github.com/mntlra/ACORDAR-Repro-py](https://anonymous.4open.science/r/ACORDAR-Repro-py)
+$  git clone https://anonymous.4open.science/r/ACORDAR-Repro-py
 ```
 and follow the instructions to download and parse the datasets.
 
